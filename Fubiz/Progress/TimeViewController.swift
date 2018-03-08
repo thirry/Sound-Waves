@@ -22,7 +22,14 @@ class TimeViewController: UIViewController, CountdownTimerDelegate {
     @IBOutlet weak var startBtn: UIButton!
     
     
-    //MARK - Vars
+    //show here
+    
+    @IBOutlet weak var showhere: UILabel!
+    var myString = String()
+    
+    
+    
+     //MARK - Vars
     
     var countdownTimerDidStart = false
     
@@ -32,8 +39,11 @@ class TimeViewController: UIViewController, CountdownTimerDelegate {
     }()
     
     
+
     // Test, for dev
-    let selectedSecs:Int = 940
+    
+    
+    var selectedSecs:Int = 0
     
     
     lazy var messageLabel: UILabel = {
@@ -51,9 +61,13 @@ class TimeViewController: UIViewController, CountdownTimerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showhere.text = myString
+        
+        selectedSecs = Int(myString)!
+        
         countdownTimer.delegate = self
-        countdownTimer.setTimer(hours: 0, minutes: 0, seconds: selectedSecs)
-        progressBar.setProgressBar(hours: 0, minutes: 0, seconds: selectedSecs)
+        countdownTimer.setTimer(hours: 0, minutes: 0, seconds: selectedSecs*60)
+        progressBar.setProgressBar(hours: 0, minutes: 0, seconds: selectedSecs*60)
         stopBtn.isEnabled = false
         stopBtn.alpha = 0.5
         
@@ -66,7 +80,11 @@ class TimeViewController: UIViewController, CountdownTimerDelegate {
         
         messageLabel.isHidden = true
         counterView.isHidden = false
+        
+        
     }
+
+    
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
@@ -86,7 +104,7 @@ class TimeViewController: UIViewController, CountdownTimerDelegate {
         
         counterView.isHidden = true
         messageLabel.isHidden = false
-        seconds.text = String(selectedSecs)
+        seconds.text = String(selectedSecs*60)
         countdownTimerDidStart = false
         stopBtn.isEnabled = false
         stopBtn.alpha = 0.5

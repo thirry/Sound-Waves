@@ -31,7 +31,6 @@
 		F186CE84201F7A5200B9EFDE /* Alpha10.5Hz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F186CE7C201F7A5200B9EFDE /* Alpha10.5Hz.mp3 */; };
 		F186CE86201F7C3600B9EFDE /* Pista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F186CE85201F7C3600B9EFDE /* Pista.mp3 */; };
 		F186CE88201F7C9100B9EFDE /* Oceansound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F186CE87201F7C9100B9EFDE /* Oceansound.mp3 */; };
-		F186CE8A201FA54F00B9EFDE /* SettingAlphaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186CE89201FA54F00B9EFDE /* SettingAlphaViewController.swift */; };
 		F1941C142018EC1F00A7FFE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1941C132018EC1F00A7FFE3 /* AppDelegate.swift */; };
 		F1941C162018EC1F00A7FFE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1941C152018EC1F00A7FFE3 /* ViewController.swift */; };
 		F1941C192018EC1F00A7FFE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1941C172018EC1F00A7FFE3 /* Main.storyboard */; };
@@ -51,9 +50,7 @@
 		F1AB6806202040ED006676B0 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AB6805202040ED006676B0 /* CustomColor.swift */; };
 		F1AB680920204165006676B0 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AB680820204165006676B0 /* CountdownTimer.swift */; };
 		F1AB680B20204317006676B0 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AB680A20204317006676B0 /* TimeViewController.swift */; };
-		F1C6EFD6204AEFB9002FD903 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6EFD5204AEFB9002FD903 /* Test.swift */; };
-		F1C6EFD8204AF358002FD903 /* Testnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6EFD7204AF358002FD903 /* Testnd.swift */; };
-		F1C6F027204B071D002FD903 /* Textrd.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6F026204B071D002FD903 /* Textrd.swift */; };
+		F1BC18B5204DA171004FA5F1 /* AlphaSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BC18B4204DA171004FA5F1 /* AlphaSettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +89,6 @@
 		F186CE7C201F7A5200B9EFDE /* Alpha10.5Hz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Alpha10.5Hz.mp3; sourceTree = "<group>"; };
 		F186CE85201F7C3600B9EFDE /* Pista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Pista.mp3; sourceTree = "<group>"; };
 		F186CE87201F7C9100B9EFDE /* Oceansound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Oceansound.mp3; sourceTree = "<group>"; };
-		F186CE89201FA54F00B9EFDE /* SettingAlphaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAlphaViewController.swift; sourceTree = "<group>"; };
 		F1941C102018EC1F00A7FFE3 /* Fubiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fubiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1941C132018EC1F00A7FFE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1941C152018EC1F00A7FFE3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,9 +114,7 @@
 		F1AB6805202040ED006676B0 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		F1AB680820204165006676B0 /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 		F1AB680A20204317006676B0 /* TimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
-		F1C6EFD5204AEFB9002FD903 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		F1C6EFD7204AF358002FD903 /* Testnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testnd.swift; sourceTree = "<group>"; };
-		F1C6F026204B071D002FD903 /* Textrd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textrd.swift; sourceTree = "<group>"; };
+		F1BC18B4204DA171004FA5F1 /* AlphaSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaSettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,7 +201,6 @@
 				F1941C562018F0C500A7FFE3 /* DesignableX */,
 				F1941C132018EC1F00A7FFE3 /* AppDelegate.swift */,
 				F16F820F201B879500335978 /* AlphaWavesViewController.swift */,
-				F186CE89201FA54F00B9EFDE /* SettingAlphaViewController.swift */,
 				F1941C152018EC1F00A7FFE3 /* ViewController.swift */,
 				F1941C172018EC1F00A7FFE3 /* Main.storyboard */,
 				F1941C1A2018EC1F00A7FFE3 /* Assets.xcassets */,
@@ -216,9 +209,7 @@
 				F1941C5A2018F11E00A7FFE3 /* FubizBntHome.swift */,
 				F13EE28E201C30B2005E7905 /* UIViewExtensions.swift */,
 				F13EE290201C3127005E7905 /* Timers.swift */,
-				F1C6EFD5204AEFB9002FD903 /* Test.swift */,
-				F1C6EFD7204AF358002FD903 /* Testnd.swift */,
-				F1C6F026204B071D002FD903 /* Textrd.swift */,
+				F1BC18B4204DA171004FA5F1 /* AlphaSettingViewController.swift */,
 			);
 			path = Fubiz;
 			sourceTree = "<group>";
@@ -440,19 +431,16 @@
 				F1941C5D2018F14500A7FFE3 /* UIButtonX.swift in Sources */,
 				F1941C602018F18C00A7FFE3 /* UIImageViewX.swift in Sources */,
 				F175E02C20210710000CEC70 /* UISliderX.swift in Sources */,
-				F1C6EFD6204AEFB9002FD903 /* Test.swift in Sources */,
 				F1941C642018F19200A7FFE3 /* UIViewControllerX.swift in Sources */,
+				F1BC18B5204DA171004FA5F1 /* AlphaSettingViewController.swift in Sources */,
 				F1941C5B2018F11E00A7FFE3 /* FubizBntHome.swift in Sources */,
 				F13EE291201C3127005E7905 /* Timers.swift in Sources */,
 				F1941C162018EC1F00A7FFE3 /* ViewController.swift in Sources */,
-				F1C6EFD8204AF358002FD903 /* Testnd.swift in Sources */,
 				F1AB6806202040ED006676B0 /* CustomColor.swift in Sources */,
 				F175E02E202108FD000CEC70 /* UISliderVolume.swift in Sources */,
 				F1941C142018EC1F00A7FFE3 /* AppDelegate.swift in Sources */,
 				F1941C622018F18F00A7FFE3 /* UIViewX.swift in Sources */,
 				F16F8210201B879500335978 /* AlphaWavesViewController.swift in Sources */,
-				F186CE8A201FA54F00B9EFDE /* SettingAlphaViewController.swift in Sources */,
-				F1C6F027204B071D002FD903 /* Textrd.swift in Sources */,
 				F13EE28F201C30B2005E7905 /* UIViewExtensions.swift in Sources */,
 				F1AB68042020406A006676B0 /* ProgressBar.swift in Sources */,
 				F1AB680B20204317006676B0 /* TimeViewController.swift in Sources */,

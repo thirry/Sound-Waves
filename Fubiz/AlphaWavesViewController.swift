@@ -17,6 +17,9 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
     var shouldStopRotating = false
     var timer: Timer!
     
+    var myString = String()
+    var pushData = String()
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,12 +43,9 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
         rotationAnimation.duration = aCircleTime
         rotationAnimation.repeatCount = .infinity
         imageView.layer.add(rotationAnimation, forKey: nil)
-        
     }
     
-    
     @IBOutlet weak var RecUIImageView: UIImageView!
-    
     
     //SOUND
     var alphaPlayer = AVAudioPlayer()
@@ -58,14 +58,12 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
         
         do {
             alphaPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Alpha8.5Hz", ofType: "mp3")!))
-            
             alphaPlayer.prepareToPlay()
             
             let audioSession = AVAudioSession.sharedInstance()
             do{
                 try audioSession.setCategory(AVAudioSessionCategoryPlayback)
             }catch{
-                
             }
             
         }
@@ -103,13 +101,10 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
             print(error)
         }
         
-        
-        
-        
-        
+        //selectedSecs = Int(myString)!
         countdownTimer.delegate = self
-        countdownTimer.setTimer(hours: 0, minutes: 0, seconds: selectedSecs)
-        progressBar.setProgressBar(hours: 0, minutes: 0, seconds: selectedSecs)
+        countdownTimer.setTimer(hours: 0, minutes: 0, seconds: selectedSecs*60)
+        progressBar.setProgressBar(hours: 0, minutes: 0, seconds: selectedSecs*60)
         stopBtn.isEnabled = false
         stopBtn.alpha = 0.5
         
@@ -123,13 +118,12 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
         messageLabel.isHidden = true
         counterView.isHidden = false
         
-        
-        
     }
     
     //Alpha waves
     @IBAction func Alpha(_ sender: UIButton) {
         alphaPlayer.numberOfLoops = -1;
+//        alphaPlayer
         alphaPlayer.play()
         
         //rotate
@@ -205,21 +199,16 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
     }
     
     //Botton back to home
-    
     @IBAction func BackToHome(_ sender: Any) {
         
-        if pianoPlayer.play() || oceanPlayer.play() || alphaPlayer.play(){
+        if pianoPlayer.isPlaying || oceanPlayer.isPlaying || alphaPlayer.isPlaying {
             pianoPlayer.pause()
             alphaPlayer.pause()
             oceanPlayer.pause()
         }
-        
     }
     
-    
-    
     // Picker For Tracks
-    
     @IBOutlet weak var progressBar: ProgressBar!
     @IBOutlet weak var hours: UILabel!
     @IBOutlet weak var minutes: UILabel!
@@ -240,7 +229,7 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
     
     
     // Test, for dev
-    let selectedSecs:Int = 40
+    var selectedSecs:Int = 0
     
     
     lazy var messageLabel: UILabel = {
@@ -249,47 +238,50 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
         label.font = UIFont.systemFont(ofSize: 24.0, weight: UIFont.Weight.light)
         label.textColor = UIColor.white
         label.textAlignment = .center
-//      label.text = "Done!"
+        //      label.text = "Done!"
         
         return label
     }()
-    
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
     
-    
     //MARK: - Countdown Timer Delegate
-    
     func countdownTime(time: (hours: String, minutes: String, seconds: String)) {
         hours.text = time.hours
         minutes.text = time.minutes
         seconds.text = time.seconds
     }
     
-    
+    // Timer Done
     func countdownTimerDone() {
         
         counterView.isHidden = true
         messageLabel.isHidden = false
-        seconds.text = String(selectedSecs)
+        seconds.text = String(selectedSecs*60)
         countdownTimerDidStart = false
         stopBtn.isEnabled = false
         stopBtn.alpha = 0.5
-//      startBtn.setTitle("START",for: .normal)
+        //startBtn.setTitle("START",for: .normal)
         
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        
         print("countdown Timer Done")
+        
+        
+        // media and animate
+        if pianoPlayer.isPlaying || oceanPlayer.isPlaying || alphaPlayer.isPlaying {
+            
+            self.rotateRec(imageView: self.UIcountdown, aCircleTime: 10000.0)
+            self.rotateCir(imageView: self.RecUIImageView, aCircleTime: 10000.0)
+            alphaPlayer.pause()
+            oceanPlayer.pause()
+            pianoPlayer.pause()
+            
+        }
     }
     
-    
-    
     @IBOutlet weak var UIcountdown: UIImageView!
-    
-    
-    
     
     //MARK: - Actions
     @IBAction func startTimer(_ sender: UIButton) {
@@ -297,18 +289,22 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
         messageLabel.isHidden = true
         counterView.isHidden = false
         
-        if sender.currentImage == #imageLiteral(resourceName: "timer-btn-bf") {
+        if selectedSecs == 0{
+            //createAlert(title: "Hi!", message: "You need to set-up countdown time")
+            createAlertAndGoToLogin(errorTitle: "Hi !", errorMessage: "You need to set-up countdown time")
+        }
+        
+        if sender.currentImage == #imageLiteral(resourceName: "timer-btn-bf") && selectedSecs != 0  {
             self.rotateRec(imageView: self.UIcountdown, aCircleTime: 7.0)
             sender.setImage(#imageLiteral(resourceName: "timer-btn-active"), for: .normal)
             
             stopBtn.isEnabled = true
             stopBtn.alpha = 1.0
-            
             countdownTimer.start()
             progressBar.start()
             countdownTimerDidStart = true
             
-        }else if sender.currentImage == #imageLiteral(resourceName: "timer-btn-active") {
+        }else if sender.currentImage == #imageLiteral(resourceName: "timer-btn-active"){
             
             self.rotateRec(imageView: self.UIcountdown, aCircleTime: 10000.0)
             sender.setImage(#imageLiteral(resourceName: "timer-btn-bf"), for: .normal)
@@ -318,34 +314,61 @@ class AlphaWavesViewController: UIViewController, CAAnimationDelegate, Countdown
             countdownTimerDidStart = false
             stopBtn.isEnabled = false
             stopBtn.alpha = 0.5
-            
         }
-        
-//        if !countdownTimerDidStart{
-//            countdownTimer.start()
-//            progressBar.start()
-//            countdownTimerDidStart = true
-//            startBtn.setTitle("PAUSE",for: .normal)
-//
-//        }else{
-//            countdownTimer.pause()
-//            progressBar.pause()
-//            countdownTimerDidStart = false
-//            startBtn.setTitle("RESUME",for: .normal)
-//        }
-        
-    }
-    @IBAction func stopTimer(_ sender: UIButton) {
-//        countdownTimer.stop()
-//        progressBar.stop()
-//        countdownTimerDidStart = false
-//        stopBtn.isEnabled = false
-//        stopBtn.alpha = 0.5
-//        startBtn.setTitle("START",for: .normal)
-//
-//        self.rotateRec(imageView: self.UIcountdown, aCircleTime: 10000.0)
     }
     
+    //Setting
+    @IBAction func Setting(_ sender: Any) {
+        
+        performSegue(withIdentifier: "seq_alpha_to_setting", sender: self)
+        
+        if pianoPlayer.isPlaying || oceanPlayer.isPlaying || alphaPlayer.isPlaying {
+            self.rotateRec(imageView: self.UIcountdown, aCircleTime: 10000.0)
+            self.rotateCir(imageView: self.RecUIImageView, aCircleTime: 10000.0)
+            alphaPlayer.pause()
+            oceanPlayer.pause()
+            pianoPlayer.pause()
+        }
+    }
+    
+    func createAlertAndGoToLogin(errorTitle: String, errorMessage: String) {
+        let alert = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            // go back to the setting view controller
+            // go back through the alpha view controller
+            // how to? set for Storyboard ID of SettingViewController = seques
+            
+            let vc = self.storyboard!.instantiateViewController(withIdentifier: "alpha_setting_controller") as! AlphaSettingViewController
+            self.present(vc, animated: false, completion: nil)
+            
+            if self.pianoPlayer.isPlaying || self.alphaPlayer.isPlaying || self.oceanPlayer.isPlaying{
+                
+                self.rotateRec(imageView: self.UIcountdown, aCircleTime: 10000.0)
+                self.rotateCir(imageView: self.RecUIImageView, aCircleTime: 10000.0)
+                self.alphaPlayer.pause()
+                self.oceanPlayer.pause()
+                self.pianoPlayer.pause()
+                
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
+            print("NO") }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let settingViewContr = segue.destination as! AlphaSettingViewController
+        //        secondCtr.myString = String(times)
+        settingViewContr.times = selectedSecs
+        
+        pushData = String(selectedSecs)
+        
+        if selectedSecs != 0 {
+            settingViewContr.countdown_push = pushData
+        }
+    }
     
     
 }

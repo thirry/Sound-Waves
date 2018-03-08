@@ -10,12 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var CircleWaves: UIView!
     @IBOutlet weak var FubizWaves: FubizBntHome!
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +21,18 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 3, delay: 0.0, options: [.curveEaseOut, .autoreverse],
                        animations: { () -> Void in
                         
-//                        let anim = CABasicAnimation(keyPath: "position.x")
-//                        anim.fromValue = 0
-//                        anim.toValue = 10.0
-//                        anim.duration = 1.0
-//                        self.FubizWaves.layer.add(anim, forKey: nil)
+                        //                        let anim = CABasicAnimation(keyPath: "position.x")
+                        //                        anim.fromValue = 0
+                        //                        anim.toValue = 10.0
+                        //                        anim.duration = 1.0
+                        //                        self.FubizWaves.layer.add(anim, forKey: nil)
                         
                         //view property animation
                         self.FubizWaves.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
                             .concatenating(CGAffineTransform(translationX: 1.0, y: 0.0))
-            
+                        
         }, completion: nil)
-
+        
     }
     
     @IBAction func FubizTapped(_ sender: Any) {
